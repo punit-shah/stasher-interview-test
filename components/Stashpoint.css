@@ -1,0 +1,12 @@
+.stashpoint {
+  border-bottom: 1px solid var(--two);
+
+  a {
+    color: var(--zero);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

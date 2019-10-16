@@ -1,0 +1,7 @@
+.filtersWrapper {
+  display: flex;
+}
+
+.filterButton {
+  text-align: center;
+}

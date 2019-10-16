@@ -1,0 +1,55 @@
+:root {
+  /* colors */
+  --zero: #000;
+  --two: #222;
+  --four: #444;
+  --six: #666;
+  --eight: #888;
+  --ten: #aaa;
+  --twelve: #ccc;
+  --fourteen: #eee;
+  --fifteen: #fff;
+  --pink: DeepPink;
+
+  font-family: sans;
+}
+
+:global button,
+:global select,
+:global input {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+
+  height: 32px;
+
+  box-shadow: 2px 2px var(--four);
+  border: 1px solid var(--two);
+}
+
+:global button,
+:global select,
+:global input[type=date],
+:global input[type=time] {
+  cursor: pointer;
+
+  background-color: var(--fourteen);
+
+  &:hover {
+    background-color: var(--fifteen);
+  }
+}
+
+:global input[type=date],
+:global input[type=time] {
+  height: 29px;
+}
+
+:global body {
+  background:
+    radial-gradient(circle, transparent 20%, var(--fifteen) 20%, var(--fifteen) 80%, transparent 80%, transparent),
+    radial-gradient(circle, transparent 20%, var(--fifteen) 20%, var(--fifteen) 80%, transparent 80%, transparent) 12px 12px,
+    linear-gradient(var(--four) 2px, transparent 2px) 0 -1px,
+    linear-gradient(90deg, var(--four) 2px, transparent 2px) -1px 0;
+  background-color: var(--fifteen);
+  background-size: 24px 24px, 24px 24px, 12px 12px, 12px 12px;
+}

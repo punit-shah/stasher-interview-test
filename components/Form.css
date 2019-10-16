@@ -1,0 +1,10 @@
+.form {
+  max-width: 400px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 16px;
+}

@@ -1,0 +1,43 @@
+.title {
+  text-align: center;
+}
+
+.box {
+  box-shadow: 2px 2px var(--four);
+  border: 1px solid var(--two);
+
+  padding: 12px;
+}
+
+.page {
+  box-shadow: 2px 2px var(--four);
+  border: 1px solid var(--two);
+
+  max-width: 960px;
+  min-height: 80vh;
+
+  margin: 0 auto;
+  padding: 32px;
+
+  background-color: var(--fifteen);
+}
+
+.label {
+  font-size: 75%;
+}
+
+.item {
+  margin-left: 16px;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+.hr {
+  margin: 16px 0;
+}
+
+.info {
+  color: lime;
+}
