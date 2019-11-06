@@ -1,5 +1,6 @@
-const API_URL = 'https://api-staging.stasher.com/v2'
+import fetch from 'isomorphic-unfetch'
 
+const API_URL = 'https://api-staging.stasher.com/v2'
 
 const generateFetchOptions = (data, token) => {
   const headers = { 'content-type': 'application/json' }
@@ -21,7 +22,6 @@ export const getStashpoint = async (id) => {
 
   return res.json()
 }
-
 
 export const getStashpoints = async ({ lat, lng, bags, dropOff, pickUp }) => {
   const params = new URLSearchParams({
@@ -102,13 +102,11 @@ export const createUser = async ({
   return res.json()
 }
 
-
 export const loginUser = async ({ email, password }, opts) => {
   const res = await fetch(`${API_URL}/tokens`, generateFetchOptions({ role: 'customer', username: email, password }))
 
   return res.json()
 }
-
 
 export const makeBooking = async ({ bags, dropOff, pickUp, stashpointId }, token) => {
   // accepted date format is 'YYYY-MM-DDTHH:mm'
@@ -125,7 +123,6 @@ export const makeBooking = async ({ bags, dropOff, pickUp, stashpointId }, token
 
   return res.json()
 }
-
 
 export const finalizePay = async (data, token) => {
   const res = await fetch(`${API_URL}/payments/finalize`, generateFetchOptions(data, token))
