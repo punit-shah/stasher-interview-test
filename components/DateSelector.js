@@ -42,11 +42,10 @@ export const DateSelector = ({ className, label, value: datetime, onChange }) =>
 
       <div>
         <input type="date" value={date} onChange={({ target: { value } }) => updateDatetime({ date: value })} />
-        <select className={timeSelector} name={label}>
+        <select className={timeSelector} name={label} defaultValue={hours.find(h => h === time)}>
           {hours.map((h) => (
             <option
               key={h}
-              selected={h === time}
               value={h}
               onClick={() => updateDatetime({ time: h })}
             >
@@ -58,7 +57,3 @@ export const DateSelector = ({ className, label, value: datetime, onChange }) =>
     </div>
   )
 }
-
-
-
-
