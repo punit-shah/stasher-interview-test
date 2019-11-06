@@ -1,5 +1,6 @@
 import moment from 'moment-mini'
 import { useState } from 'react'
+import Router from 'next/router'
 
 import { SearchBar } from '../components/SearchBar'
 import { Stashpoint } from '../components/Stashpoint'
@@ -31,7 +32,12 @@ const Home = () => {
     setResults(resStash)
   }
 
-  const onBook = (id) => {}
+  const onBook = (id) => {
+    Router.push({
+      pathname: '/checkout',
+      query: { id }
+    })
+  }
 
   return (
     <div className={page}>
