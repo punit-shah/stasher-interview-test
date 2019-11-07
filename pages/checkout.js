@@ -1,8 +1,9 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Router from 'next/router'
 import Link from 'next/link'
 import cookie from 'js-cookie'
 import moment from 'moment-mini'
+import MoonLoader from 'react-spinners/MoonLoader'
 
 import {
   getStashpoint,
@@ -14,7 +15,7 @@ import Layout from '../components/Layout'
 import StashpointInfo from '../components/StashpointInfo'
 import BookingInfo from '../components/BookingInfo'
 
-import { twoColumn } from '../style/style.css'
+import { twoColumn, buttonWithLoader } from '../style/style.css'
 
 const Checkout = ({ bags, ...props }) => {
   // redirect to index if props are missing
@@ -36,8 +37,11 @@ const Checkout = ({ bags, ...props }) => {
     currentQuery
   } = props
 
+  const [booking, setBooking] = useState(false)
+
   const token = cookie.get('st_token')
   const onBook = async () => {
+    setBooking(true)
     const booking = await makeBooking(
       { bags, dropOff, pickUp, stashpointId: stashpoint.id },
       token
@@ -81,26 +85,35 @@ const Checkout = ({ bags, ...props }) => {
         />
       </div>
 
-      <p style={{ textAlign: 'center' }}>
+      <div
+        style={{
+          textAlign: 'center',
+          display: 'flex',
+          justifyContent: 'center'
+        }}
+      >
         {isLoggedIn ? (
-          <button onClick={onBook}>Book now</button>
+          <button className={buttonWithLoader} onClick={onBook} disabled={booking}>
+            {booking ? 'Booking...' : 'Book now'}
+            <MoonLoader size={12} loading={booking} />
+          </button>
         ) : (
-          <>
+          <p>
             <Link
               href={`/login?nextPath=${currentPath}&nextQuery=${currentQuery}`}
             >
               <a>Log in</a>
-            </Link>
-            {' or '}
+            </Link>{' '}
+            or{' '}
             <Link
               href={`/register?nextPath=${currentPath}&nextQuery=${currentQuery}`}
             >
               <a>register</a>
-            </Link>
-            {' to book now'}
-          </>
+            </Link>{' '}
+            to book now
+          </p>
         )}
-      </p>
+      </div>
     </Layout>
   )
 }

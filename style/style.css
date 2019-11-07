@@ -86,6 +86,14 @@
   }
 }
 
+.buttonWithLoader {
+  display: flex;
+
+  > div {
+    margin-left: 4px;
+  }
+}
+
 .table {
   margin: 12px 0;
   width: 100%;
