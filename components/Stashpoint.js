@@ -1,4 +1,4 @@
-import { stashpoint } from './Stashpoint.css'
+import { stashpoint, stashpointName, bookButton } from './Stashpoint.css'
 
 export const Stashpoint = ({
   data: { name, location_name: locationName, address, rating },
@@ -6,13 +6,13 @@ export const Stashpoint = ({
 }) => {
   return (
     <div className={stashpoint}>
-      <h5>
-        <a href="#">{locationName} - {name}</a>
-      </h5>
+      <p className={stashpointName}>
+        {locationName} - {name}
+      </p>
 
       <p>{address}</p>
 
-      <button name="book" onClick={onBook}>Book</button>
+      <button className={bookButton} onClick={onBook}>Book</button>
     </div>
   )
 }

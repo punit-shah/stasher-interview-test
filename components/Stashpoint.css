@@ -1,5 +1,6 @@
 .stashpoint {
   border-bottom: 1px solid var(--two);
+  text-align: left;
 
   a {
     color: var(--zero);
@@ -9,4 +10,13 @@
       text-decoration: underline;
     }
   }
+}
+
+.stashpointName {
+  font-weight: bold;
+}
+
+.bookButton {
+  display: block;
+  margin: 1em 0;
 }
