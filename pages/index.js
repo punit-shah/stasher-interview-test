@@ -11,7 +11,6 @@ import { getStashpoints } from '../utils/api'
 import '../style/global.css'
 import { title, box, page } from '../style/style.css'
 
-
 const Home = () => {
   const [results, setResults] = useState([])
   const [bags, setBags] = useState(1)

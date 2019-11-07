@@ -5,7 +5,16 @@ import { box, title, hr, table } from '../style/style.css'
 const getPriceString = (price, minorInMajor, symbol) =>
   `${symbol}${(price / minorInMajor).toFixed(2)}`
 
-const BookingInfo = ({ bags, dropOff, pickUp, quote, onBook, isLoggedIn }) => (
+const BookingInfo = ({
+  bags,
+  dropOff,
+  pickUp,
+  quote,
+  onBook,
+  isLoggedIn,
+  currentPath,
+  currentQuery
+}) => (
   <section className={box}>
     <h2 className={title}>Booking Information</h2>
 
@@ -45,7 +54,14 @@ const BookingInfo = ({ bags, dropOff, pickUp, quote, onBook, isLoggedIn }) => (
       </div>
     ) : (
       <p style={{ textAlign: 'center' }}>
-        <Link href="/login">Log in</Link> or <Link href="/register">register</Link> to book
+        <Link href={`/login?nextPath=${currentPath}&nextQuery=${currentQuery}`}>
+          <a>Log in</a>
+        </Link>
+        {' or '}
+        <Link href={`/register?nextPath=${currentPath}&nextQuery=${currentQuery}`}>
+          <a>register</a>
+        </Link>
+        {' to book'}
       </p>
     )}
   </section>

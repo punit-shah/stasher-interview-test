@@ -6,7 +6,15 @@ import '../style/global.css'
 import { title, page, twoColumn } from '../style/style.css'
 import BookingInfo from '../components/BookingInfo'
 
-const Checkout = ({ bags, dropOff, pickUp, stashpoint, quote }) => {
+const Checkout = ({
+  bags,
+  dropOff,
+  pickUp,
+  stashpoint,
+  quote,
+  currentPath,
+  currentQuery
+}) => {
   const isLoggedIn = !!cookie.get('st_token')
   return (
     <div className={page}>
@@ -14,13 +22,21 @@ const Checkout = ({ bags, dropOff, pickUp, stashpoint, quote }) => {
 
       <div className={twoColumn}>
         <StashpointInfo {...stashpoint} />
-        <BookingInfo bags={bags} dropOff={dropOff} pickUp={pickUp} quote={quote} isLoggedIn={isLoggedIn} />
+        <BookingInfo
+          bags={bags}
+          dropOff={dropOff}
+          pickUp={pickUp}
+          quote={quote}
+          isLoggedIn={isLoggedIn}
+          currentPath={currentPath}
+          currentQuery={currentQuery}
+        />
       </div>
     </div>
   )
 }
 
-Checkout.getInitialProps = async ({ query }) => {
+Checkout.getInitialProps = async ({ query, pathname }) => {
   const dropOff = moment(query.dropOff)
   const pickUp = moment(query.pickUp)
   const stashpoint = await getStashpoint(query.id)
@@ -36,7 +52,9 @@ Checkout.getInitialProps = async ({ query }) => {
     dropOff,
     pickUp,
     stashpoint,
-    quote
+    quote,
+    currentPath: encodeURIComponent(pathname),
+    currentQuery: encodeURIComponent(JSON.stringify(query))
   }
 }
 
