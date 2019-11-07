@@ -15,10 +15,13 @@ const Register = ({ nextPath, nextQuery }) => {
     if (user.token) {
       cookie.set('st_token', user.token)
 
-      Router.push({
-        pathname: nextPath ? decodeURIComponent(nextPath) : '/',
-        query: nextQuery ? JSON.parse(decodeURIComponent(nextQuery)) : {}
-      })
+      Router.push(
+        {
+          pathname: nextPath ? decodeURIComponent(nextPath) : '/',
+          query: nextQuery ? JSON.parse(decodeURIComponent(nextQuery)) : {}
+        },
+        nextPath
+      )
     }
   }
 

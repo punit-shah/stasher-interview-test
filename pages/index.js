@@ -32,15 +32,18 @@ const Home = () => {
   }
 
   const onBook = (id) => {
-    Router.push({
-      pathname: '/checkout',
-      query: {
-        id,
-        bags,
-        dropOff: dropOff.format('YYYY-MM-DDTHH:00'),
-        pickUp: pickUp.format('YYYY-MM-DDTHH:00')
-      }
-    })
+    Router.push(
+      {
+        pathname: '/checkout',
+        query: {
+          id,
+          bags,
+          dropOff: dropOff.format('YYYY-MM-DDTHH:00'),
+          pickUp: pickUp.format('YYYY-MM-DDTHH:00')
+        }
+      },
+      '/checkout'
+    )
   }
 
   return (
