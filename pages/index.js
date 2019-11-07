@@ -17,21 +17,37 @@ const Home = () => {
   const [dropOff, setDropOff] = useState(moment())
   const [pickUp, setPickUp] = useState(moment().add(1, 'hours'))
   const [loading, setLoading] = useState(false)
+  const [noResultsMessage, setNoResultsMessage] = useState('')
 
   const updateResults = async searchVal => {
     setLoading(true)
     const resGeo = await getCoordsFromLocation(searchVal)
 
-    const coords = resGeo.results[0].geometry.location
-    const resStash = await getStashpoints({
-      ...coords,
-      bags,
-      dropOff: dropOff.format('YYYY-MM-DDTHH:mm'),
-      pickUp: pickUp.format('YYYY-MM-DDTHH:mm')
-    })
+    switch (resGeo.status) {
+      case 'OK': {
+        const coords = resGeo.results[0].geometry.location
+        const resStash = await getStashpoints({
+          ...coords,
+          bags,
+          dropOff: dropOff.format('YYYY-MM-DDTHH:mm'),
+          pickUp: pickUp.format('YYYY-MM-DDTHH:mm')
+        })
+        if (!resStash.length) {
+          setNoResultsMessage('No stashpoints found in this location')
+        }
 
-    setLoading(false)
-    setResults(resStash)
+        setLoading(false)
+        setResults(resStash)
+        break
+      }
+      case 'ZERO_RESULTS':
+        setLoading(false)
+        setNoResultsMessage('Location not found')
+        break
+      default:
+        setLoading(false)
+        setNoResultsMessage('Error - please try again')
+    }
   }
 
   const onBook = id => {
@@ -67,11 +83,14 @@ const Home = () => {
         {loading ? (
           <MoonLoader size={32} color="#000" />
         ) : (
-          <ul>
-            {results.map(r => (
-              <Stashpoint key={r.id} data={r} onBook={() => onBook(r.id)} />
-            ))}
-          </ul>
+          <>
+            <ul>
+              {results.map(r => (
+                <Stashpoint key={r.id} data={r} onBook={() => onBook(r.id)} />
+              ))}
+            </ul>
+            <p>{noResultsMessage}</p>
+          </>
         )}
       </div>
     </Layout>

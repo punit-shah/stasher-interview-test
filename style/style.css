@@ -56,9 +56,11 @@
 
 .resultsContainer {
   display: flex;
+  flex-direction: column;
   margin: 24px 0;
   justify-content: center;
   align-items: center;
+  text-align: center;
 
   ul {
     margin: 0;
