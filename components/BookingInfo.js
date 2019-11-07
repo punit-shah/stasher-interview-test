@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import moment from 'moment-mini'
 import { box, title, hr, table } from '../style/style.css'
 
@@ -9,11 +8,15 @@ const BookingInfo = ({
   bags,
   dropOff,
   pickUp,
-  quote,
-  onBook,
-  isLoggedIn,
-  currentPath,
-  currentQuery
+  quote: {
+    ccySymbol,
+    ccyMinorInMajor,
+    firstDayPrice,
+    extraDays,
+    extraDayPrice,
+    discount,
+    totalPrice
+  }
 }) => (
   <section className={box}>
     <h2 className={title}>Booking Information</h2>
@@ -29,41 +32,33 @@ const BookingInfo = ({
         <tr>
           <td>First day</td>
           <td>
-            {getPriceString(quote.firstDayPrice, quote.ccyMinorInMajor, quote.ccySymbol)}
+            {getPriceString(firstDayPrice, ccyMinorInMajor, ccySymbol)}
           </td>
         </tr>
-        {quote.extraDays ? (
+        {extraDays ? (
           <tr>
             <td>Extra days</td>
             <td>
-              {getPriceString(quote.extraDayPrice, quote.ccyMinorInMajor, quote.ccySymbol)}
+              {getPriceString(extraDayPrice, ccyMinorInMajor, ccySymbol)}
+            </td>
+          </tr>
+        ) : null}
+        {discount ? (
+          <tr>
+            <td>Discount</td>
+            <td>
+              -{getPriceString(discount, ccyMinorInMajor, ccySymbol)}
             </td>
           </tr>
         ) : null}
         <tr style={{ fontWeight: 'bold' }}>
           <td>Total</td>
           <td>
-            {getPriceString(quote.totalPrice, quote.ccyMinorInMajor, quote.ccySymbol)}
+            {getPriceString(totalPrice, ccyMinorInMajor, ccySymbol)}
           </td>
         </tr>
       </tbody>
     </table>
-    {isLoggedIn ? (
-      <div style={{ margin: '24px 0', textAlign: 'right' }}>
-        <button onClick={onBook}>Book now</button>
-      </div>
-    ) : (
-      <p style={{ textAlign: 'center' }}>
-        <Link href={`/login?nextPath=${currentPath}&nextQuery=${currentQuery}`}>
-          <a>Log in</a>
-        </Link>
-        {' or '}
-        <Link href={`/register?nextPath=${currentPath}&nextQuery=${currentQuery}`}>
-          <a>register</a>
-        </Link>
-        {' to book'}
-      </p>
-    )}
   </section>
 )
 
