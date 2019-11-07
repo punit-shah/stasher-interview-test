@@ -12,8 +12,8 @@ const BookingInfo = ({
     ccySymbol,
     ccyMinorInMajor,
     firstDayPrice,
-    extraDays,
     extraDayPrice,
+    preDiscountPrice,
     discount,
     totalPrice
   }
@@ -33,17 +33,23 @@ const BookingInfo = ({
           <td>First day</td>
           <td>{getPriceString(firstDayPrice, ccyMinorInMajor, ccySymbol)}</td>
         </tr>
-        {extraDays ? (
+        {extraDayPrice ? (
           <tr>
             <td>Extra days</td>
             <td>{getPriceString(extraDayPrice, ccyMinorInMajor, ccySymbol)}</td>
           </tr>
         ) : null}
         {discount ? (
-          <tr>
-            <td>Discount</td>
-            <td>-{getPriceString(discount, ccyMinorInMajor, ccySymbol)}</td>
-          </tr>
+          <>
+            <tr>
+              <td>Subtotal</td>
+              <td>{getPriceString(preDiscountPrice, ccyMinorInMajor, ccySymbol)}</td>
+            </tr>
+            <tr>
+              <td>Discount</td>
+              <td>-{getPriceString(discount, ccyMinorInMajor, ccySymbol)}</td>
+            </tr>
+          </>
         ) : null}
         <tr style={{ fontWeight: 'bold' }}>
           <td>Total</td>

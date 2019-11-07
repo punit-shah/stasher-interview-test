@@ -27,6 +27,7 @@ const Confirmation = ({ bags, ...props }) => {
     ccyMinorInMajor,
     firstDayPrice,
     extraDayPrice,
+    preDiscountPrice,
     discount,
     totalPrice
   } = props
@@ -58,6 +59,7 @@ const Confirmation = ({ bags, ...props }) => {
             ccyMinorInMajor,
             firstDayPrice,
             extraDayPrice,
+            preDiscountPrice,
             discount,
             totalPrice
           }}
@@ -80,6 +82,7 @@ Confirmation.getInitialProps = ({ query: { booking } }) => {
     ccy_minor_in_major: ccyMinorInMajor,
     first_day_price: firstDayPrice,
     extra_day_price: extraDayPrice,
+    pre_discount_price: preDiscountPrice,
     discount_amount: discount,
     total_price_amount: totalPrice
   } = JSON.parse(decodeURIComponent(booking))
@@ -94,6 +97,7 @@ Confirmation.getInitialProps = ({ query: { booking } }) => {
     ccyMinorInMajor,
     firstDayPrice,
     extraDayPrice,
+    preDiscountPrice,
     discount,
     totalPrice
   }
