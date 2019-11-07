@@ -1,15 +1,23 @@
 import { useEffect } from 'react'
-import moment from 'moment-mini'
-import cookie from 'js-cookie'
-import { getStashpoint, getQuote, makeBooking, finalizePay } from '../utils/api'
-import StashpointInfo from '../components/StashpointInfo'
-import '../style/global.css'
-import { title, page, twoColumn } from '../style/style.css'
-import BookingInfo from '../components/BookingInfo'
 import Router from 'next/router'
 import Link from 'next/link'
+import cookie from 'js-cookie'
+import moment from 'moment-mini'
+
+import {
+  getStashpoint,
+  getQuote,
+  makeBooking,
+  finalizePay
+} from '../utils/api'
+import StashpointInfo from '../components/StashpointInfo'
+import BookingInfo from '../components/BookingInfo'
+
+import '../style/global.css'
+import { title, page, twoColumn } from '../style/style.css'
 
 const Checkout = ({ bags, ...props }) => {
+  // redirect to index if props are missing
   useEffect(() => {
     if (!bags) {
       Router.replace('/')
@@ -30,14 +38,24 @@ const Checkout = ({ bags, ...props }) => {
 
   const token = cookie.get('st_token')
   const onBook = async () => {
-    const booking = await makeBooking({ bags, dropOff, pickUp, stashpointId: stashpoint.id }, token)
-    const completedBooking = await finalizePay({ booking_id: booking.id }, token)
+    const booking = await makeBooking(
+      { bags, dropOff, pickUp, stashpointId: stashpoint.id },
+      token
+    )
+    const completedBooking = await finalizePay(
+      { booking_id: booking.id },
+      token
+    )
 
     if (completedBooking.id) {
       Router.push(
         {
           pathname: '/confirmation',
-          query: { booking: encodeURIComponent(JSON.stringify(completedBooking.booking)) }
+          query: {
+            booking: encodeURIComponent(
+              JSON.stringify(completedBooking.booking)
+            )
+          }
         },
         '/confirmation'
       )
@@ -50,7 +68,13 @@ const Checkout = ({ bags, ...props }) => {
       <h1 className={title}>Stasher</h1>
 
       <div className={twoColumn}>
-        <StashpointInfo {...stashpoint} />
+        <StashpointInfo
+          name={stashpoint.name}
+          address={stashpoint.address}
+          description={stashpoint.description}
+          photos={stashpoint.photos}
+          openingHours={stashpoint.opening_hours}
+        />
         <BookingInfo
           bags={bags}
           dropOff={dropOff}
@@ -64,10 +88,15 @@ const Checkout = ({ bags, ...props }) => {
           <button onClick={onBook}>Book now</button>
         ) : (
           <>
-            <Link href={`/login?nextPath=${currentPath}&nextQuery=${currentQuery}`}>
+            <Link
+              href={`/login?nextPath=${currentPath}&nextQuery=${currentQuery}`}
+            >
               <a>Log in</a>
-            </Link>{' or '}
-            <Link href={`/register?nextPath=${currentPath}&nextQuery=${currentQuery}`}>
+            </Link>
+            {' or '}
+            <Link
+              href={`/register?nextPath=${currentPath}&nextQuery=${currentQuery}`}
+            >
               <a>register</a>
             </Link>
             {' to book now'}

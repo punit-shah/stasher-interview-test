@@ -1,10 +1,9 @@
-import moment from 'moment-mini'
 import { useState } from 'react'
 import Router from 'next/router'
+import moment from 'moment-mini'
 
 import { SearchBar } from '../components/SearchBar'
 import { Stashpoint } from '../components/Stashpoint'
-
 import { getCoordsFromLocation } from '../utils/google'
 import { getStashpoints } from '../utils/api'
 

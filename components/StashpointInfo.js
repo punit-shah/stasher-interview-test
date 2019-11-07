@@ -29,7 +29,7 @@ const StashpointInfo = ({
   address,
   description,
   photos,
-  opening_hours: openingHours
+  openingHours
 }) => (
   <section className={box}>
     <h2 className={title}>Your Stashpoint</h2>

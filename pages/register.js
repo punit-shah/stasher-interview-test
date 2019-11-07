@@ -2,8 +2,8 @@ import Router from 'next/router'
 import Link from 'next/link'
 import cookie from 'js-cookie'
 
-import RegisterForm from '../components/RegisterForm'
 import { createUser } from '../utils/api'
+import RegisterForm from '../components/RegisterForm'
 
 import '../style/global.css'
 import { title, page } from '../style/style.css'
@@ -31,11 +31,19 @@ const Register = ({ nextPath, nextQuery }) => {
 
       <RegisterForm onRegister={onRegister} />
 
-      <p>Already have an account? <Link href="/login"><a>Log in</a></Link></p>
+      <p>
+        Already have an account?{' '}
+        <Link href="/login">
+          <a>Log in</a>
+        </Link>
+      </p>
     </div>
   )
 }
 
-Register.getInitialProps = ({ query: { nextPath, nextQuery } }) => ({ nextPath, nextQuery })
+Register.getInitialProps = ({ query: { nextPath, nextQuery } }) => ({
+  nextPath,
+  nextQuery
+})
 
 export default Register

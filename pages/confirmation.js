@@ -1,10 +1,13 @@
-import { page, title, twoColumn } from '../style/style.css'
+import { useEffect } from 'react'
+import Router from 'next/router'
+
 import StashpointInfo from '../components/StashpointInfo'
 import BookingInfo from '../components/BookingInfo'
-import Router from 'next/router'
-import { useEffect } from 'react'
+
+import { page, title, twoColumn } from '../style/style.css'
 
 const Confirmation = ({ bags, ...props }) => {
+  // redirect to index if props are missing
   useEffect(() => {
     if (!bags) {
       Router.replace('/')
