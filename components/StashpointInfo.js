@@ -1,6 +1,6 @@
 import moment from 'moment-mini'
 import { box, title, subtitle, table } from '../style/style.css'
-import { overview, stashpointImage } from './StashpointInfo.css'
+import { overview, stashpointImage, stashpointName } from './StashpointInfo.css'
 
 const formatOpeningHours = (open, close) =>
   `${moment(open, 'HH:mm:ss').format('HH:mm')} – ${moment(close, 'HH:mm:ss').format('HH:mm')}`
@@ -39,7 +39,7 @@ const StashpointInfo = ({
           <img src={photos[0]} alt={name} />
         </div>
       )}
-      <div>
+      <div className={stashpointName}>
         <h3>{name}</h3>
         {address && <p>{address}</p>}
       </div>
