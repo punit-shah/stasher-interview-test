@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import moment from 'moment-mini'
 import cookie from 'js-cookie'
 import { getStashpoint, getQuote, makeBooking, finalizePay } from '../utils/api'
@@ -8,15 +9,25 @@ import BookingInfo from '../components/BookingInfo'
 import Router from 'next/router'
 import Link from 'next/link'
 
-const Checkout = ({
-  bags,
-  dropOff,
-  pickUp,
-  stashpoint,
-  quote,
-  currentPath,
-  currentQuery
-}) => {
+const Checkout = ({ bags, ...props }) => {
+  useEffect(() => {
+    if (!bags) {
+      Router.replace('/')
+    }
+  })
+  if (!bags) {
+    return null
+  }
+
+  const {
+    dropOff,
+    pickUp,
+    stashpoint,
+    quote,
+    currentPath,
+    currentQuery
+  } = props
+
   const token = cookie.get('st_token')
   const onBook = async () => {
     const booking = await makeBooking({ bags, dropOff, pickUp, stashpointId: stashpoint.id }, token)
@@ -68,6 +79,10 @@ const Checkout = ({
 }
 
 Checkout.getInitialProps = async ({ query, pathname }) => {
+  if (!Object.keys(query).length) {
+    return {}
+  }
+
   const dropOff = moment(query.dropOff)
   const pickUp = moment(query.pickUp)
   const stashpoint = await getStashpoint(query.id)
