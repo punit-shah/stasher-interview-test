@@ -27,29 +27,36 @@ const getOpeningHoursTableRows = openingHours => {
 const StashpointInfo = ({
   name,
   address,
+  description,
   photos,
   opening_hours: openingHours
 }) => (
   <section className={box}>
     <h2 className={title}>Your Stashpoint</h2>
     <div className={overview}>
-      {photos.length && (
+      {photos && photos.length && (
         <div className={stashpointImage}>
           <img src={photos[0]} alt={name} />
         </div>
       )}
       <div>
         <h3>{name}</h3>
-        <p>{address}</p>
+        {address && <p>{address}</p>}
       </div>
     </div>
 
-    <h4 className={subtitle}>Opening hours</h4>
-    <table className={table}>
-      <tbody>
-        {getOpeningHoursTableRows(openingHours)}
-      </tbody>
-    </table>
+    {description && <p>{description}</p>}
+
+    {openingHours && (
+      <>
+        <h4 className={subtitle}>Opening hours</h4>
+        <table className={table}>
+          <tbody>
+            {getOpeningHoursTableRows(openingHours)}
+          </tbody>
+        </table>
+      </>
+    )}
   </section>
 )
 
