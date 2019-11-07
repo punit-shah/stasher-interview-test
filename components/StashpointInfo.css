@@ -1,0 +1,19 @@
+.overview {
+  display: flex;
+
+  h3, p {
+    margin: 0;
+  }
+}
+
+.stashpointImage {
+  height: 64px;
+  width: 64px;
+  min-width: 64px;
+  border-radius: 32px;
+  margin-right: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

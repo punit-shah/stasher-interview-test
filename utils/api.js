@@ -16,7 +16,6 @@ const generateFetchOptions = (data, token) => {
   }
 }
 
-
 export const getStashpoint = async (id) => {
   const res = await fetch(`${API_URL}/stashpoints/${id}`)
 

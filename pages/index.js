@@ -35,13 +35,18 @@ const Home = () => {
   const onBook = (id) => {
     Router.push({
       pathname: '/checkout',
-      query: { id }
+      query: {
+        id,
+        bags,
+        dropOff: dropOff.format('YYYY-MM-DDTHH:00'),
+        pickUp: pickUp.format('YYYY-MM-DDTHH:00')
+      }
     })
   }
 
   return (
     <div className={page}>
-      <h3 className={title}>Stasher!</h3>
+      <h1 className={title}>Stasher</h1>
 
       <header className={box}>
         <SearchBar

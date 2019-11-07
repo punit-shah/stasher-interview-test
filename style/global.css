@@ -34,7 +34,9 @@
 
   background-color: var(--fourteen);
 
-  &:hover {
+  &:hover,
+  &:active,
+  &:focus {
     background-color: var(--fifteen);
   }
 }
@@ -45,11 +47,8 @@
 }
 
 :global body {
-  background:
-    radial-gradient(circle, transparent 20%, var(--fifteen) 20%, var(--fifteen) 80%, transparent 80%, transparent),
-    radial-gradient(circle, transparent 20%, var(--fifteen) 20%, var(--fifteen) 80%, transparent 80%, transparent) 12px 12px,
-    linear-gradient(var(--four) 2px, transparent 2px) 0 -1px,
-    linear-gradient(90deg, var(--four) 2px, transparent 2px) -1px 0;
   background-color: var(--fifteen);
-  background-size: 24px 24px, 24px 24px, 12px 12px, 12px 12px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+    Arial, sans-serif;
+  line-height: 1.5;
 }

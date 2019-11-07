@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+.subtitle {
+  margin-top: 1em;
+  margin-bottom: 0;
+}
+
 .box {
   box-shadow: 2px 2px var(--four);
   border: 1px solid var(--two);
@@ -40,4 +45,44 @@
 
 .info {
   color: lime;
+}
+
+.twoColumn {
+  display: flex;
+  flex-wrap: wrap;
+
+  section {
+    flex: 1 1 40%;
+    margin: 12px;
+    min-width: 288px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.table {
+  margin: 12px 0;
+  width: 100%;
+  border: solid 1px var(--four);
+  border-collapse: collapse;
+
+  td {
+    padding: 6px;
+    border-bottom: solid 1px var(--four);
+    text-align: center;
+
+    &:first-child {
+      text-align: left;
+    }
+
+    &:last-child {
+      text-align: right;
+    }
+  }
 }
