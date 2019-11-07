@@ -4,7 +4,7 @@ import moment from 'moment-mini'
 import { label as labelStyle } from '../style/style.css'
 
 import { filterButton } from './SearchBar.css'
-import { timeSelector } from './DateSelector.css'
+import { dateSelector, timeSelector } from './DateSelector.css'
 
 
 const hours = Array.apply(null, Array(24)).map((x, i) => `${i.toString().padStart(2, '0')}:00`)
@@ -41,7 +41,7 @@ export const DateSelector = ({ className, label, value: datetime, onChange }) =>
       <br />
 
       <div>
-        <input type="date" value={date} onChange={({ target: { value } }) => updateDatetime({ date: value })} />
+        <input className={dateSelector} type="date" value={date} onChange={({ target: { value } }) => updateDatetime({ date: value })} />
         <select className={timeSelector} name={label} defaultValue={hours.find(h => h === time)}>
           {hours.map((h) => (
             <option

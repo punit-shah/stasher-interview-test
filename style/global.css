@@ -11,6 +11,11 @@
   --fifteen: #fff;
   --pink: DeepPink;
   --blue: #1380a1;
+  box-sizing: border-box;
+}
+
+:global * {
+  box-sizing: inherit;
 }
 
 :global button,
@@ -38,11 +43,6 @@
   &:focus {
     background-color: var(--fifteen);
   }
-}
-
-:global input[type=date],
-:global input[type=time] {
-  height: 29px;
 }
 
 :global body {

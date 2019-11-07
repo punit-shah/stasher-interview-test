@@ -44,6 +44,7 @@
 
 .item {
   margin-left: 16px;
+  padding: 6px;
 
   &:first-child {
     margin-left: 0;
