@@ -1,6 +1,5 @@
 import { form as formStyle, row } from './Form.css'
 
-
 export const LoginForm = ({ onLogin }) => {
   const onSubmit = (ev) => {
     const {
@@ -17,22 +16,22 @@ export const LoginForm = ({ onLogin }) => {
 
   return (
     <div>
-      <h5>
-        <a>Fill in your data</a>
-      </h5>
+      <h2>
+        Log in
+      </h2>
 
       <form className={formStyle} onSubmit={onSubmit}>
         <div className={row}>
-          <label>Email</label>
-          <input type="email" id="email" name="email" />
+          <label htmlFor="email">Email</label>
+          <input type="email" id="email" name="email" required />
         </div>
 
         <div className={row}>
-          <label>Password</label>
-          <input type="password" id="password" name="password" />
+          <label htmlFor="password">Password</label>
+          <input type="password" id="password" name="password" required />
         </div>
 
-        <button type="submit" name="submit">Submit</button>
+        <button type="submit" name="submit">Log in</button>
       </form>
     </div>
   )

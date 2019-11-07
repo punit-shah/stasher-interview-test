@@ -1,10 +1,11 @@
+import Link from 'next/link'
 import moment from 'moment-mini'
 import { box, title, hr, table } from '../style/style.css'
 
 const getPriceString = (price, minorInMajor, symbol) =>
   `${symbol}${(price / minorInMajor).toFixed(2)}`
 
-const BookingInfo = ({ bags, dropOff, pickUp, quote, onBook }) => (
+const BookingInfo = ({ bags, dropOff, pickUp, quote, onBook, isLoggedIn }) => (
   <section className={box}>
     <h2 className={title}>Booking Information</h2>
 
@@ -19,40 +20,34 @@ const BookingInfo = ({ bags, dropOff, pickUp, quote, onBook }) => (
         <tr>
           <td>First day</td>
           <td>
-            {getPriceString(
-              quote.firstDayPrice,
-              quote.ccyMinorInMajor,
-              quote.ccySymbol
-            )}
+            {getPriceString(quote.firstDayPrice, quote.ccyMinorInMajor, quote.ccySymbol)}
           </td>
         </tr>
         {quote.extraDays ? (
           <tr>
             <td>Extra days</td>
             <td>
-              {getPriceString(
-                quote.extraDayPrice,
-                quote.ccyMinorInMajor,
-                quote.ccySymbol
-              )}
+              {getPriceString(quote.extraDayPrice, quote.ccyMinorInMajor, quote.ccySymbol)}
             </td>
           </tr>
         ) : null}
         <tr style={{ fontWeight: 'bold' }}>
           <td>Total</td>
           <td>
-            {getPriceString(
-              quote.totalPrice,
-              quote.ccyMinorInMajor,
-              quote.ccySymbol
-            )}
+            {getPriceString(quote.totalPrice, quote.ccyMinorInMajor, quote.ccySymbol)}
           </td>
         </tr>
       </tbody>
     </table>
-    <div style={{ margin: '24px 0', textAlign: 'right' }}>
-      <button onClick={onBook}>Book now</button>
-    </div>
+    {isLoggedIn ? (
+      <div style={{ margin: '24px 0', textAlign: 'right' }}>
+        <button onClick={onBook}>Book now</button>
+      </div>
+    ) : (
+      <p style={{ textAlign: 'center' }}>
+        <Link href="/login">Log in</Link> or <Link href="/register">register</Link> to book
+      </p>
+    )}
   </section>
 )
 

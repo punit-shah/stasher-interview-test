@@ -2,15 +2,15 @@ import Router from 'next/router'
 import Link from 'next/link'
 import cookie from 'js-cookie'
 
-import { LoginForm } from '../components/LoginForm'
-import { loginUser } from '../utils/api'
+import RegisterForm from '../components/RegisterForm'
+import { createUser } from '../utils/api'
 
 import '../style/global.css'
 import { title, page } from '../style/style.css'
 
-const Login = () => {
-  const onLogin = async (data) => {
-    const user = await loginUser(data)
+const Register = () => {
+  const onRegister = async details => {
+    const user = await createUser(details)
 
     if (user.token) {
       cookie.set('st_token', user.token)
@@ -26,11 +26,11 @@ const Login = () => {
     <div className={page}>
       <h1 className={title}>Stasher</h1>
 
-      <LoginForm onLogin={onLogin} />
+      <RegisterForm onRegister={onRegister} />
 
-      <p>Don't have an account? <Link href="/register">Register</Link></p>
+      <p>Already have an account? <Link href="/login">Log in</Link></p>
     </div>
   )
 }
 
-export default Login
+export default Register
