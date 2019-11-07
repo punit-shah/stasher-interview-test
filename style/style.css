@@ -54,8 +54,17 @@
   margin: 16px 0;
 }
 
-.info {
-  color: lime;
+.resultsContainer {
+  display: flex;
+  margin: 24px 0;
+  justify-content: center;
+  align-items: center;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
 }
 
 .twoColumn {
