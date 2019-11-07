@@ -10,11 +10,11 @@ import {
   makeBooking,
   finalizePay
 } from '../utils/api'
+import Layout from '../components/Layout'
 import StashpointInfo from '../components/StashpointInfo'
 import BookingInfo from '../components/BookingInfo'
 
-import '../style/global.css'
-import { title, page, twoColumn } from '../style/style.css'
+import { twoColumn } from '../style/style.css'
 
 const Checkout = ({ bags, ...props }) => {
   // redirect to index if props are missing
@@ -64,9 +64,7 @@ const Checkout = ({ bags, ...props }) => {
   const isLoggedIn = !!token
 
   return (
-    <div className={page}>
-      <h1 className={title}>Stasher</h1>
-
+    <Layout>
       <div className={twoColumn}>
         <StashpointInfo
           name={stashpoint.name}
@@ -103,7 +101,7 @@ const Checkout = ({ bags, ...props }) => {
           </>
         )}
       </p>
-    </div>
+    </Layout>
   )
 }
 

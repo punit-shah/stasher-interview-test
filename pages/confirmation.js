@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
 import Router from 'next/router'
 
+import Layout from '../components/Layout'
 import StashpointInfo from '../components/StashpointInfo'
 import BookingInfo from '../components/BookingInfo'
 
-import { page, title, twoColumn } from '../style/style.css'
+import { twoColumn } from '../style/style.css'
 
 const Confirmation = ({ bags, ...props }) => {
   // redirect to index if props are missing
@@ -37,9 +38,7 @@ const Confirmation = ({ bags, ...props }) => {
   } = stashpoint
 
   return (
-    <div className={page}>
-      <h1 className={title}>Stasher</h1>
-
+    <Layout>
       <h2>Booking complete</h2>
 
       <p>You're all set, {customerName}!</p>
@@ -64,7 +63,7 @@ const Confirmation = ({ bags, ...props }) => {
           }}
         />
       </div>
-    </div>
+    </Layout>
   )
 }
 

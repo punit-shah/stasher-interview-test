@@ -3,10 +3,8 @@ import Link from 'next/link'
 import cookie from 'js-cookie'
 
 import { loginUser } from '../utils/api'
+import Layout from '../components/Layout'
 import { LoginForm } from '../components/LoginForm'
-
-import '../style/global.css'
-import { title, page } from '../style/style.css'
 
 const Login = ({ nextPath, nextQuery }) => {
   const onLogin = async data => {
@@ -26,9 +24,7 @@ const Login = ({ nextPath, nextQuery }) => {
   }
 
   return (
-    <div className={page}>
-      <h1 className={title}>Stasher</h1>
-
+    <Layout>
       <LoginForm onLogin={onLogin} />
 
       <p>
@@ -37,7 +33,7 @@ const Login = ({ nextPath, nextQuery }) => {
           <a>Register</a>
         </Link>
       </p>
-    </div>
+    </Layout>
   )
 }
 

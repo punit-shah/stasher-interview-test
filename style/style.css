@@ -1,5 +1,16 @@
 .title {
   text-align: center;
+
+  a {
+    text-decoration: none;
+    color: var(--two);
+    border-bottom: solid 1px transparent;
+
+    &:hover, &:active, &:focus {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+  }
 }
 
 .subtitle {

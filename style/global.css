@@ -10,8 +10,7 @@
   --fourteen: #eee;
   --fifteen: #fff;
   --pink: DeepPink;
-
-  font-family: sans;
+  --blue: #1380a1;
 }
 
 :global button,
@@ -51,4 +50,5 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
     Arial, sans-serif;
   line-height: 1.5;
+  color: var(--two)
 }

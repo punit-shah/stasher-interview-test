@@ -3,10 +3,8 @@ import Link from 'next/link'
 import cookie from 'js-cookie'
 
 import { createUser } from '../utils/api'
+import Layout from '../components/Layout'
 import RegisterForm from '../components/RegisterForm'
-
-import '../style/global.css'
-import { title, page } from '../style/style.css'
 
 const Register = ({ nextPath, nextQuery }) => {
   const onRegister = async details => {
@@ -26,9 +24,7 @@ const Register = ({ nextPath, nextQuery }) => {
   }
 
   return (
-    <div className={page}>
-      <h1 className={title}>Stasher</h1>
-
+    <Layout>
       <RegisterForm onRegister={onRegister} />
 
       <p>
@@ -37,7 +33,7 @@ const Register = ({ nextPath, nextQuery }) => {
           <a>Log in</a>
         </Link>
       </p>
-    </div>
+    </Layout>
   )
 }
 

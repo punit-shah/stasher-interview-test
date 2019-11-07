@@ -2,13 +2,13 @@ import { useState } from 'react'
 import Router from 'next/router'
 import moment from 'moment-mini'
 
-import { SearchBar } from '../components/SearchBar'
-import { Stashpoint } from '../components/Stashpoint'
 import { getCoordsFromLocation } from '../utils/google'
 import { getStashpoints } from '../utils/api'
+import Layout from '../components/Layout'
+import { SearchBar } from '../components/SearchBar'
+import { Stashpoint } from '../components/Stashpoint'
 
-import '../style/global.css'
-import { title, box, page } from '../style/style.css'
+import { box } from '../style/style.css'
 
 const Home = () => {
   const [results, setResults] = useState([])
@@ -46,9 +46,7 @@ const Home = () => {
   }
 
   return (
-    <div className={page}>
-      <h1 className={title}>Stasher</h1>
-
+    <Layout>
       <header className={box}>
         <SearchBar
           bags={bags}
@@ -66,7 +64,7 @@ const Home = () => {
           {results.map(r => <Stashpoint key={r.id} data={r} onBook={() => onBook(r.id) } />)}
         </ul>
       </div>
-    </div>
+    </Layout>
   )
 }
 
