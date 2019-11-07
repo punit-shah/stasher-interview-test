@@ -6,11 +6,17 @@ import { label as labelStyle } from '../style/style.css'
 import { filterButton } from './SearchBar.css'
 import { dateSelector, timeSelector } from './DateSelector.css'
 
+const hours = Array.apply(null, Array(24)).map(
+  (x, i) => `${i.toString().padStart(2, '0')}:00`
+)
 
-const hours = Array.apply(null, Array(24)).map((x, i) => `${i.toString().padStart(2, '0')}:00`)
-
-
-export const DateSelector = ({ className, label, value: datetime, onChange }) => {
+export const DateSelector = ({
+  className,
+  label,
+  idPrefix,
+  value: datetime,
+  onChange
+}) => {
   const date = datetime.format('YYYY-MM-DD')
   const time = datetime.format('HH:00')
 
@@ -36,14 +42,26 @@ export const DateSelector = ({ className, label, value: datetime, onChange }) =>
 
   return (
     <div className={classnames(filterButton, className)}>
-      <label className={labelStyle}>{label}</label>
+      <label className={labelStyle} htmlFor={`${idPrefix}-date`}>
+        {label}
+      </label>
 
       <br />
 
       <div>
-        <input className={dateSelector} type="date" value={date} onChange={({ target: { value } }) => updateDatetime({ date: value })} />
-        <select className={timeSelector} name={label} defaultValue={hours.find(h => h === time)}>
-          {hours.map((h) => (
+        <input
+          className={dateSelector}
+          id={`${idPrefix}-date`}
+          type="date"
+          value={date}
+          onChange={({ target: { value } }) => updateDatetime({ date: value })}
+        />
+        <select
+          className={timeSelector}
+          id={`${idPrefix}-time`}
+          defaultValue={hours.find(h => h === time)}
+        >
+          {hours.map(h => (
             <option
               key={h}
               value={h}

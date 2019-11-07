@@ -43,6 +43,7 @@ export const SearchBar = ({
       <div className={filtersWrapper}>
         <BagSelector
           className={item}
+          id="bag-select"
           value={bags}
           options={bagOptions}
           onSelect={onSelectBags}
@@ -50,12 +51,14 @@ export const SearchBar = ({
         <DateSelector
           className={item}
           label="Drop off"
+          idPrefix="dropoff"
           value={dropOff}
           onChange={onChangeDropOff}
         />
         <DateSelector
           className={item}
           label="Pick up"
+          idPrefix="pickup"
           value={pickUp}
           onChange={onChangePickUp}
         />
