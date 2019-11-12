@@ -51,8 +51,6 @@ const Checkout = ({ bags, ...props }) => {
       token
     )
 
-    console.log(completedBooking.booking)
-
     if (completedBooking.id) {
       Router.push(
         {
@@ -68,8 +66,6 @@ const Checkout = ({ bags, ...props }) => {
     }
   }
   const isLoggedIn = !!token
-
-  console.log(quote)
 
   return (
     <Layout>
